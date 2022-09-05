@@ -17,15 +17,19 @@ import lombok.Setter;
 @Getter
 @Setter
 public class User {
+
     @Id
     private String id;
-    private String name;
+
     @Indexed(unique = true)
     private String email;
-    private String password;
-    private String nickName;
+
     @Indexed(unique = true)
     private String keyName;
+
+    private String name;
+    private String password;
+    private String nickName;
     private String bio;
     private String birthday;
     private String photo;
