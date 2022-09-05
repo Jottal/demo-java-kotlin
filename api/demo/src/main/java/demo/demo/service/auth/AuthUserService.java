@@ -51,7 +51,6 @@ public class AuthUserService {
             throw new BusinessValidationException("Password is incorrect");
         }
 
-        LoginUserResponse loginResponse = includeLoginUserRequesttoLoginUserResponse.apply(user.get());
-        return loginResponse;
+        return includeLoginUserRequesttoLoginUserResponse.apply(user.get());
     }
 }
