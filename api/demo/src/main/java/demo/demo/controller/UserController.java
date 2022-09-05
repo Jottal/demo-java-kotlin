@@ -10,19 +10,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import demo.demo.controller.request.LoginUserRequest;
 import demo.demo.controller.request.RegisterUserRequest;
-import demo.demo.service.auth.RegisterUserService;
+import demo.demo.controller.response.auth.LoginUserResponse;
+import demo.demo.service.auth.AuthUserService;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
     @Autowired
-    RegisterUserService registerUserService;
+    AuthUserService authUserService;
 
     @PostMapping("/public/create")
     @ResponseStatus(code = HttpStatus.CREATED)
     public void registerUser(@RequestBody @Valid RegisterUserRequest registerUserRequest) {
-        registerUserService.register(registerUserRequest);
+        authUserService.register(registerUserRequest);
+    }
+
+    @PostMapping("/public/login")
+    @ResponseStatus(code = HttpStatus.OK)
+    public LoginUserResponse loginUser(@RequestBody @Valid LoginUserRequest loginUserRequest) {
+        return authUserService.login(loginUserRequest);
     }
 }
