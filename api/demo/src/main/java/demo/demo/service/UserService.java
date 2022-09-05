@@ -53,4 +53,14 @@ public class UserService {
             throw new BusinessValidationException(e.getMessage());
         }
     }
+
+    public void deleteUser(String id) {
+        Optional<User> user = userRepository.findById(id);
+
+        if (!user.isPresent()) {
+            throw new NotFoundException("User not found");
+        }
+
+        userRepository.delete(user.get());
+    }
 }
