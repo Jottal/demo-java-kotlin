@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import demo.demo.controller.request.RegisterUserRequest;
 import demo.demo.domain.User;
+import demo.demo.exception.BusinessValidationException;
 import demo.demo.mapper.IncludeRegisterUserRequestToUser;
 import demo.demo.repository.UserRepository;
 
@@ -21,11 +22,11 @@ public class RegisterUserService {
         User user = includeRegisterUserRequestToUser.apply(registerUserRequest);
 
         userRepository.findByEmail(user.getEmail()).ifPresent(u -> {
-            throw new RuntimeException("Email already exists");
+            throw new BusinessValidationException("Email already exists");
         });
 
         userRepository.findByKeyName(user.getKeyName()).ifPresent(u -> {
-            throw new RuntimeException("KeyName already exists");
+            throw new BusinessValidationException("KeyName already exists");
         });
 
         userRepository.save(user);
