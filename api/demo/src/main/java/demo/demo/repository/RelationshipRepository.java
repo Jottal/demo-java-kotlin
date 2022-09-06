@@ -10,5 +10,7 @@ import demo.demo.domain.Relationship;
 public interface RelationshipRepository extends MongoRepository<Relationship, String> {
     List<Relationship> findByFollowerId(String followerId);
 
+    List<Relationship> findByFollowedId(String followerId);
+
     Optional<Relationship> findByFollowerIdAndFollowedId(String followerId, String followedId);
 }

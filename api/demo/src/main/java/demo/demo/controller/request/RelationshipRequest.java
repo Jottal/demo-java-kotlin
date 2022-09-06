@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CreateRelationshipRequest {
+public class RelationshipRequest {
     private String followerId;
     private String followedId;
 }
