@@ -1,6 +1,7 @@
 package demo.demo.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
@@ -11,23 +12,20 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Data
-@Document("users")
+@Document("relationships")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Builder
-public class User {
+public class Relationship {
 
     @Id
     private String id;
 
-    private String email;
-    private String keyName;
-    private String name;
-    private String password;
-    private String nickName;
-    private String bio;
-    private String birthday;
-    private String photo;
+    @DBRef
+    private User follower;
+
+    @DBRef
+    private User followed;
 }
