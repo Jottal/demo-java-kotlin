@@ -1,6 +1,8 @@
 package demo.demo.service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,5 +64,12 @@ public class UserService {
         }
 
         userRepository.delete(user.get());
+    }
+
+    public List<UserResponse> getAllUser() {
+        List<User> users = userRepository.findAll();
+        List<UserResponse> userResponses = users.stream().map(includeUserToUserResponse::apply)
+                .collect(Collectors.toList());
+        return userResponses;
     }
 }

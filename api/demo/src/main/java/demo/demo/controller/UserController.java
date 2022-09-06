@@ -1,5 +1,7 @@
 package demo.demo.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,5 +60,11 @@ public class UserController {
     @ResponseStatus(code = HttpStatus.OK)
     public void deleteUser(@PathVariable("id") String id) {
         userService.deleteUser(id);
+    }
+
+    @GetMapping("/private/refresh")
+    @ResponseStatus(code = HttpStatus.OK)
+    public List<UserResponse> getAllUser() {
+        return userService.getAllUser();
     }
 }
