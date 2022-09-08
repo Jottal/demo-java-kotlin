@@ -44,6 +44,13 @@ public class UserService {
             return userResponse;
         }
 
+        Optional<User> userFindedByEmail = userRepository.findByEmail(filter);
+
+        if (userFindedByEmail.isPresent()) {
+            UserResponse userResponse = includeUserToUserResponse.apply(userFindedByEmail.get());
+            return userResponse;
+        }
+
         throw new NotFoundException("User not found");
     }
 
