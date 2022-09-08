@@ -9,7 +9,7 @@ import retrofit2.http.*
 
 interface UserEndpoint {
     @POST("/user/public/create")
-    fun registerUser(@Body requestBody: RequestBody) : Response<ResponseBody>
+    fun registerUser(@Body jsonObject: JsonObject) : Call<Void>
 
     @POST("/user/public/login")
     fun loginUser(@Body jsonObject: JsonObject) : Call<JsonObject>

@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:hint="Password"
             android:inputType="textPassword"
-            android:nextFocusDown="@+id/btnLogin"
+            android:imeOptions="actionDone"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -70,6 +70,19 @@
         app:layout_constraintTop_toBottomOf="@id/tvPassword"
         android:layout_margin="30dp"
         android:textColor="#fff"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:id="@+id/tvRegister"
+        android:layout_width="wrap_content"
+        android:text="Register"
+        android:textColor="@color/purple_200"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="10dp"
         android:layout_height="wrap_content"
         />
 

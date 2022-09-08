@@ -12,6 +12,5 @@ public class UserResponse {
     private String nickName;
     private String keyName;
     private String bio;
-    private String birthday;
     private String photo;
 }

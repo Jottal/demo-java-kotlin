@@ -11,5 +11,4 @@ public class RegisterUserRequest {
     private String password;
     private String nickName;
     private String keyName;
-    private String birthday;
 }

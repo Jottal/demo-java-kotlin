@@ -28,6 +28,5 @@ public class User {
     private String password;
     private String nickName;
     private String bio;
-    private String birthday;
     private String photo;
 }

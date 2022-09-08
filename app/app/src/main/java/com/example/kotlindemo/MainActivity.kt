@@ -1,9 +1,11 @@
 package com.example.kotlindemo
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.example.kotlindemo.api.UserEndpoint
 import com.example.kotlindemo.util.NetworkUtils
@@ -15,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnLogin: Button
     private lateinit var edEmail: EditText
     private lateinit var edPassword: EditText
+    private lateinit var tvRegister: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,13 +26,19 @@ class MainActivity : AppCompatActivity() {
         btnLogin = findViewById(R.id.btnLogin)
         edEmail = findViewById(R.id.edEmail)
         edPassword = findViewById(R.id.edPassword)
+        tvRegister = findViewById(R.id.tvRegister)
 
         btnLogin.setOnClickListener {
-            if (edEmail.text.trim().isNotEmpty() || edPassword.text.trim().isNotEmpty()){
-                loginUser()
+            if (edEmail.text.trim().isEmpty() || edPassword.text.trim().isEmpty()){
+                Toast.makeText(this, "Email or Password Empty", Toast.LENGTH_LONG).show()
             }else {
-                Toast.makeText(this@MainActivity, "Email or Password Empty", Toast.LENGTH_LONG).show()
+                loginUser()
             }
+        }
+
+        tvRegister.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
         }
     }
 
@@ -51,7 +60,12 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                 if (response.isSuccessful){
                     val responseJson: JsonObject = response.body()!!
-                    Toast.makeText(this@MainActivity, responseJson.get("id").toString(), Toast.LENGTH_LONG).show()
+                    val intent = Intent(this@MainActivity, HomeActivity::class.java)
+                    val b = Bundle()
+                    b.putString("id", responseJson.get("id").toString())
+                    intent.putExtras(b)
+                    startActivity(intent)
+                    finish()
                 }else {
                     Toast.makeText(this@MainActivity, "Error", Toast.LENGTH_LONG).show()
                 }
