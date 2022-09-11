@@ -73,10 +73,10 @@ public class UserService {
         userRepository.delete(user.get());
     }
 
-    public List<UserResponse> getAllUser() {
+    public List<UserResponse> getAllUser(String id) {
         List<User> users = userRepository.findAll();
         List<UserResponse> userResponses = users.stream().map(includeUserToUserResponse::apply)
-                .collect(Collectors.toList());
+                .filter(user -> !user.getId().equals(id)).collect(Collectors.toList());
         return userResponses;
     }
 }

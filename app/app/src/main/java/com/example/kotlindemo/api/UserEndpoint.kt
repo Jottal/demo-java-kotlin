@@ -1,5 +1,6 @@
 package com.example.kotlindemo.api
 
+import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
@@ -23,6 +24,6 @@ interface UserEndpoint {
     @DELETE("/user/private/delete/{id}")
     fun deleteUser(@Path(value = "id", encoded = true) id : String) : Response<ResponseBody>
 
-    @GET("/user/private/refresh")
-    fun getAllUser() : Call<JsonObject>
+    @GET("/user/private/refresh/{id}")
+    fun getAllUser(@Path(value = "id", encoded = true) id : String) : Call<JsonArray>
 }

@@ -6,7 +6,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -58,15 +57,15 @@ public class UserController {
         userService.updateUser(updateUserRequest);
     }
 
-    @DeleteMapping("/private/delete/{id}")
+    @PostMapping("/private/delete/{id}")
     @ResponseStatus(code = HttpStatus.OK)
     public void deleteUser(@PathVariable("id") String id) {
         userService.deleteUser(id);
     }
 
-    @GetMapping("/private/refresh")
+    @GetMapping("/private/refresh/{id}")
     @ResponseStatus(code = HttpStatus.OK)
-    public List<UserResponse> getAllUser() {
-        return userService.getAllUser();
+    public List<UserResponse> getAllUser(@PathVariable("id") String id) {
+        return userService.getAllUser(id);
     }
 }
