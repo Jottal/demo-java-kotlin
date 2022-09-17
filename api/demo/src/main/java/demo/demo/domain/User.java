@@ -21,7 +21,10 @@ public class User {
 
     @Indexed(unique = true)
     private String email;
+
+    @Indexed(unique = true)
     private String keyName;
+
     private String name;
     private String password;
     private String nickName;
